@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyAsbo.Data\MyAsbo.Data.csproj" />
+  </ItemGroup>
+
 </Project>
