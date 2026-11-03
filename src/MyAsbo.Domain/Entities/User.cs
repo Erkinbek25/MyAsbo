@@ -1,24 +1,19 @@
 ﻿using MyAsbo.Domain.Commons;
 using MyAsbo.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyAsbo.Domain.Entities
 {
     public class User : Auditable
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Login { get; set; } // Email
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string Login { get; set; } = string.Empty;
         public string? PhoneNumber { get; set; }
-        public string PasswordHash { get; set; }
+        public string PasswordHash { get; set; } = string.Empty;
         public UserRole Role { get; set; }
         public bool IsActive { get; set; } = true;
 
         public long? OrganizationId { get; set; }
-        public Organization? organization { get; set; }
+        public Organization? Organization { get; set; }
     }
 }

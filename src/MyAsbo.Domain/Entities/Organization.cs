@@ -10,7 +10,7 @@ namespace MyAsbo.Domain.Entities
     public class Organization : Auditable
     {
         public string Name { get; set; } = string.Empty;
-        public string Inn { get; set; }
+        public string Inn { get; set; } = string.Empty;
         public string? Address { get; set; }
         public string? PhoneNumber { get; set; }
         public bool IsActive { get; set; } = true;
