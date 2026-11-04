@@ -18,8 +18,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasIndex(u => u.Login).IsUnique();
 
         builder.HasOne(u => u.Organization)
-            .WithMany(u => u.Users)
-            .HasForeignKey(u => u.Organization)
+            .WithMany(o => o.Users)
+            .HasForeignKey(u => u.OrganizationId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
