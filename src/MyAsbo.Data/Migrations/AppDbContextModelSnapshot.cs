@@ -94,6 +94,10 @@ namespace MyAsbo.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
+                    b.Property<string>("MiddleName")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
                     b.Property<long?>("OrganizationId")
                         .HasColumnType("bigint");
 
