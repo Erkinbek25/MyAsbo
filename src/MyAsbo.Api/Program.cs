@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyAsbo.Data.DbContexts;
+using MyAsbo.Data.IRepositories;
+using MyAsbo.Data.Repositories;
 
 namespace MyAsbo.Api
 {
@@ -17,6 +19,7 @@ namespace MyAsbo.Api
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

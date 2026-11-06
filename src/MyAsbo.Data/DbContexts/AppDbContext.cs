@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyAsbo.Domain.Commons;
 using MyAsbo.Domain.Entities;
 
 namespace MyAsbo.Data.DbContexts;
@@ -17,5 +18,24 @@ public class AppDbContext : DbContext
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        foreach(var entry in ChangeTracker.Entries<Auditable>())
+        {
+            if(entry.State == EntityState.Added)
+            {
+                entry.Entity.CreatedAt = DateTime.Now;
+            }
+            else if (entry.State == EntityState.Modified)
+            {
+                entry.Entity.UpdatedAt = DateTime.Now;
+            }
+
+        }
+            return base.SaveChangesAsync(cancellationToken);
+    }
+
+
 
 }
