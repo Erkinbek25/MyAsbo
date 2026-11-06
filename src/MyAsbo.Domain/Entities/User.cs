@@ -6,7 +6,7 @@ namespace MyAsbo.Domain.Entities
     public class User : Auditable
     {
         public string FirstName { get; set; } = string.Empty;
-        public string? MiddleName { get; set; } = string.Empty;
+        public string? MiddleName { get; set; }
         public string LastName { get; set; } = string.Empty;
         public string Login { get; set; } = string.Empty;
         public string? PhoneNumber { get; set; }
