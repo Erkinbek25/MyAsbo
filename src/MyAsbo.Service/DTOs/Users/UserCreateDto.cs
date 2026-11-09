@@ -16,6 +16,7 @@ public class UserCreateDto
     [StringLength(100, ErrorMessage = "Sharif 100 belgidan oshmasligi kerak")]
     public string? MiddleName { get; set; }
 
+    [Required(ErrorMessage = "Login kiritilishi shart")]
     [StringLength(50, ErrorMessage = "Login 50 belgidan oshmasligi kerak")]
     public string Login { get; set; } = string.Empty;
 

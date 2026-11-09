@@ -11,7 +11,7 @@ public class UserResultDto
     public string Login { get; set; } = string.Empty;
     public string? PhoneNumber { get; set; }
     public UserRole Role { get; set; }
-    public bool IsActive { get; set; } = true;
+    public bool IsActive { get; set; }
 
     public long? OrganizationId { get; set; }
 }
