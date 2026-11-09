@@ -19,6 +19,10 @@ public class RegisterDto
     [StringLength(72, MinimumLength = 8, ErrorMessage = "Login 72 belgidan oshmasligi kerak")]
     public string Login { get; set; } = string.Empty;
 
+    [Required(ErrorMessage = "Parol kiritilishi shart")]
+    [StringLength(72, MinimumLength = 8, ErrorMessage = "Parol 72 belgidan oshmasligi kerak")]
+    public string Password { get; set; } = string.Empty;
+
     [StringLength(20, ErrorMessage = "Telefon raqam 20 belgidan oshmasligi kerak")]
     public string? PhoneNumber { get; set; }
 
@@ -26,13 +30,13 @@ public class RegisterDto
     [RegularExpression("^[0-9]{9}$", ErrorMessage = "STIR aniq 9 ta raqamdan iborat bo'lishi kerak")]
     public string Inn { get; set; } = string.Empty;
 
-    [StringLength(200, ErrorMessage = "OrganizationName 200 belgidan oshmasligi kerak")]
+    [StringLength(200, ErrorMessage = "Tashkilot nomi 200 belgidan oshmasligi kerak")]
     public string OrganizationName { get; set; } = string.Empty;
 
-    [StringLength(500, ErrorMessage = "Address 500 belgidan oshmasligi kerak")]
+    [StringLength(500, ErrorMessage = "Manzil 500 belgidan oshmasligi kerak")]
     public string? Address { get; set; }
 
-    [StringLength(20, ErrorMessage = "OrganizationPhoneNumber 20 belgidan oshmasligi kerak")]
+    [StringLength(20, ErrorMessage = "Tashkilot telefon raqami 20 belgidan oshmasligi kerak")]
     public string? OrganizationPhoneNumber { get; set; }
 
 
