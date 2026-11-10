@@ -1,6 +1,6 @@
 ﻿using MyAsbo.Domain.Entities;
 
-namespace MyAsbo.Service.Intefaces;
+namespace MyAsbo.Service.Interfaces;
 
 public interface ITokenService
 {

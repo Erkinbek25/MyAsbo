@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MyAsbo.Domain.Entities;
-using MyAsbo.Service.Intefaces;
+using MyAsbo.Service.Interfaces;
 using MyAsbo.Service.Options;
 using System.Security.Claims;
 
@@ -19,7 +19,7 @@ public class TokenService : ITokenService
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.FirstName.ToString()),
+            new Claim(ClaimTypes.Name, user.Login),
             new Claim(ClaimTypes.Role, user.Role.ToString())
         };
         throw new NotImplementedException();
