@@ -4,7 +4,6 @@ using MyAsbo.Domain.Entities;
 using MyAsbo.Service.Interfaces;
 using MyAsbo.Service.Options;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net;
 using System.Security.Claims;
 using System.Text;
 
@@ -36,7 +35,7 @@ public class TokenService : ITokenService
             claims: claims,
             signingCredentials: credentials,
             audience: _options.Audience,
-            expires: DateTime.UtcNow.AddMinutes(_options.ExpiresInMinutes);
+            expires: DateTime.UtcNow.AddMinutes(_options.ExpiresInMinutes));
 
         return new JwtSecurityTokenHandler().WriteToken(token);
 
