@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using MyAsbo.Data.DbContexts;
 using MyAsbo.Data.IRepositories;
@@ -28,6 +29,13 @@ namespace MyAsbo.Api
                 builder.Configuration.GetSection(JwtOptions.SectionName));
 
             builder.Services.AddScoped<ITokenService, TokenService>();
+
+            var jwtOptions = builder.Configuration
+                .GetSection(JwtOptions.SectionName)
+                .Get<JwtOptions>()!;
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(jwtOptions => { });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
