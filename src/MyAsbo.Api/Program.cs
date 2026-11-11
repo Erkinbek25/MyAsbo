@@ -71,6 +71,8 @@ namespace MyAsbo.Api
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
 
