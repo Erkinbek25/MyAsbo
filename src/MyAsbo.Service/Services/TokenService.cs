@@ -3,8 +3,9 @@ using Microsoft.IdentityModel.Tokens;
 using MyAsbo.Domain.Entities;
 using MyAsbo.Service.Interfaces;
 using MyAsbo.Service.Options;
-using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
+using System.Security.Claims;
 using System.Text;
 
 namespace MyAsbo.Service.Services;
@@ -28,14 +29,14 @@ public class TokenService : ITokenService
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey));
 
-        var credantials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
             issuer: _options.Issuer,
             claims: claims,
-            signingCredentials: credantials,
+            signingCredentials: credentials,
             audience: _options.Audience,
-            expires: DateTime.UtcNow.AddMinutes(_options.ExpiresInMinutes));
+            expires: DateTime.UtcNow.AddMinutes(_options.ExpiresInMinutes);
 
         return new JwtSecurityTokenHandler().WriteToken(token);
 
