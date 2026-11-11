@@ -4,6 +4,7 @@ using MyAsbo.Data.IRepositories;
 using MyAsbo.Data.Repositories;
 using MyAsbo.Service.Interfaces;
 using MyAsbo.Service.Options;
+using MyAsbo.Service.Services;
 
 namespace MyAsbo.Api
 {
@@ -26,7 +27,7 @@ namespace MyAsbo.Api
             builder.Services.Configure<JwtOptions>(
                 builder.Configuration.GetSection(JwtOptions.SectionName));
 
-            builder.Services.AddScoped<ITokenService, ITokenService>();
+            builder.Services.AddScoped<ITokenService, TokenService>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
