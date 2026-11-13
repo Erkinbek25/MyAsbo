@@ -41,6 +41,14 @@ public class AuthService : IAuthService
             throw new Exception("Bu STIR bilan tashkilot ro’yxatdan o’tgan");
         }
 
+        var organization = new Organization
+        {
+            Name = dto.OrganizationName,
+            Inn = dto.Inn,
+            Address = dto.Address,
+            PhoneNumber = dto.OrganizationPhoneNumber
+        };
+
         throw new NotImplementedException();
 
     }
