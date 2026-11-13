@@ -22,17 +22,26 @@ public class AuthService : IAuthService
     }
     public async Task<string> LoginAsync(LoginDto dto)
     {
-       var loginExists = await _userRepository.AnyAsync(u => u.Login == dto.Login);
-        if(loginExists)
-        {
-            throw new Exception("Bu login band");
-        }
 
-       
+        throw new NotImplementedException();
+
     }
 
     public async Task<UserResultDto> RegisterAsync(RegisterDto dto)
     {
+        var loginExists = await _userRepository.AnyAsync(u => u.Login == dto.Login);
+        if (loginExists)
+        {
+            throw new Exception("Bu login band");
+        }
+        
+        var innExists = await _organizationRepository.AnyAsync( o => o.Inn == dto.Inn);
+        if(innExists)
+        {
+            throw new Exception("Bu STIR bilan tashkilot ro’yxatdan o’tgan");
+        }
+
         throw new NotImplementedException();
+
     }
 }
