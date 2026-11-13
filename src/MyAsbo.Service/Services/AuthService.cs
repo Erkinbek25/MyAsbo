@@ -63,7 +63,21 @@ public class AuthService : IAuthService
             Organization = organization,
         };
 
-        throw new NotImplementedException();
+        await _userRepository.InsertAsync(user);
+        await _userRepository.SaveChangesAsync();
+
+        return new UserResultDto
+        {
+            Id = user.Id,
+            FirstName = user.FirstName,
+            LastName= user.LastName,
+            MiddleName= user.MiddleName,
+            Login= user.Login,
+            PhoneNumber= user.PhoneNumber,
+            Role = user.Role,
+            IsActive = user.IsActive,
+            OrganizationId = user.OrganizationId,
+        };
 
     }
 }
