@@ -32,6 +32,8 @@ namespace MyAsbo.Api
 
             builder.Services.AddScoped<ITokenService, TokenService>();
 
+            builder.Services.AddScoped<IAuthService, AuthService>();
+
             var jwtOptions = builder.Configuration
                 .GetSection(JwtOptions.SectionName)
                 .Get<JwtOptions>()!;
