@@ -1,7 +1,9 @@
 ﻿using MyAsbo.Data.IRepositories;
 using MyAsbo.Domain.Entities;
+using MyAsbo.Domain.Enums;
 using MyAsbo.Service.DTOs.Auth;
 using MyAsbo.Service.DTOs.Users;
+using MyAsbo.Service.Helpers;
 using MyAsbo.Service.Interfaces;
 
 namespace MyAsbo.Service.Services;
@@ -47,6 +49,18 @@ public class AuthService : IAuthService
             Inn = dto.Inn,
             Address = dto.Address,
             PhoneNumber = dto.OrganizationPhoneNumber
+        };
+
+        var user = new User
+        {
+            FirstName = dto.FirstName,
+            LastName = dto.LastName,
+            MiddleName = dto.MiddleName,
+            Login = dto.Login,
+            PhoneNumber = dto.PhoneNumber,
+            PasswordHash = PasswordHelper.Hash(dto.Password),
+            Role = UserRole.Director,
+            Organization = organization,
         };
 
         throw new NotImplementedException();
