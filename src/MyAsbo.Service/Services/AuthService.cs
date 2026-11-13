@@ -5,6 +5,7 @@ using MyAsbo.Service.DTOs.Auth;
 using MyAsbo.Service.DTOs.Users;
 using MyAsbo.Service.Helpers;
 using MyAsbo.Service.Interfaces;
+using System.Security.Cryptography.X509Certificates;
 
 namespace MyAsbo.Service.Services;
 
@@ -24,8 +25,18 @@ public class AuthService : IAuthService
     }
     public async Task<string> LoginAsync(LoginDto dto)
     {
+        var user = await _userRepository.SelectAsync(u => u.Login == dto.Login);
+        if(user is null)
+        {
+            throw new Exception("Login yoki parol noto'g'ri");
+        }
 
-        throw new NotImplementedException();
+        if (!PasswordHelper.Verify(dto.Password, user.PasswordHash))
+        {
+            throw new Exception("Login yoki parol noto'g'ri");
+        }
+
+        return _tokenService.GenerateToken(user);
 
     }
 
