@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyAsbo.Service.DTOs.Auth;
 using MyAsbo.Service.Interfaces;
-using MyAsbo.Service.Services;
 
 namespace MyAsbo.Api.Controllers;
 
@@ -10,7 +9,7 @@ namespace MyAsbo.Api.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
-    public AuthController( AuthService authService)
+    public AuthController( IAuthService authService)
     {
         _authService = authService;
     }
@@ -20,6 +19,12 @@ public class AuthController : ControllerBase
     {
         var result = await _authService.RegisterAsync(registerDto);
         return Ok(result);
+    }
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginDto loginDto)
+    {
+        var token = await _authService.LoginAsync(loginDto);
+        return Ok(new {token});
     }
 
 
