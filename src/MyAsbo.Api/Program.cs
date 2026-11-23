@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using MyAsbo.Api.Middlewares;
 using MyAsbo.Data.DbContexts;
 using MyAsbo.Data.IRepositories;
 using MyAsbo.Data.Repositories;
@@ -9,8 +9,6 @@ using MyAsbo.Service.Interfaces;
 using MyAsbo.Service.Options;
 using MyAsbo.Service.Services;
 using System.Text;
-using MyAsbo.Api.Middlewares;
-using ExceptionHandlerMiddleware = MyAsbo.Api.Middlewares.ExceptionHandlerMiddleware;
 
 namespace MyAsbo.Api
 {
