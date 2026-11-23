@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using MyAsbo.Api.Middlewares;
 using MyAsbo.Data.DbContexts;
 using MyAsbo.Data.IRepositories;
 using MyAsbo.Data.Repositories;
@@ -64,6 +65,7 @@ namespace MyAsbo.Api
 
             var app = builder.Build();
 
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
