@@ -3,6 +3,7 @@ using MyAsbo.Domain.Entities;
 using MyAsbo.Domain.Enums;
 using MyAsbo.Service.DTOs.Auth;
 using MyAsbo.Service.DTOs.Users;
+using MyAsbo.Service.Exceptions;
 using MyAsbo.Service.Helpers;
 using MyAsbo.Service.Interfaces;
 
@@ -27,12 +28,12 @@ public class AuthService : IAuthService
         var user = await _userRepository.SelectAsync(u => u.Login == dto.Login);
         if(user is null)
         {
-            throw new Exception("Login yoki parol noto'g'ri");
+            throw new CustomException(401, "Login yoki parol noto'g'ri");
         }
 
         if (!PasswordHelper.Verify(dto.Password, user.PasswordHash))
         {
-            throw new Exception("Login yoki parol noto'g'ri");
+            throw new CustomException(401, "Login yoki parol noto'g'ri");
         }
 
         return _tokenService.GenerateToken(user);
@@ -44,13 +45,13 @@ public class AuthService : IAuthService
         var loginExists = await _userRepository.AnyAsync(u => u.Login == dto.Login);
         if (loginExists)
         {
-            throw new Exception("Bu login band");
+            throw new CustomException(409, "Bu login band");
         }
         
         var innExists = await _organizationRepository.AnyAsync( o => o.Inn == dto.Inn);
         if(innExists)
         {
-            throw new Exception("Bu STIR bilan tashkilot ro’yxatdan o’tgan");
+            throw new CustomException(409, "Bu STIR bilan tashkilot ro’yxatdan o’tgan");
         }
 
         var organization = new Organization
