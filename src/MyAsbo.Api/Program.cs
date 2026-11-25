@@ -10,7 +10,6 @@ using MyAsbo.Service.Options;
 using MyAsbo.Service.Services;
 using System.Text;
 using Microsoft.OpenApi.Models;
-using System.Security.Cryptography.Xml;
 
 namespace MyAsbo.Api
 {
@@ -72,7 +71,7 @@ namespace MyAsbo.Api
                     Type = SecuritySchemeType.Http,
                     Scheme = "bearer",
                     BearerFormat = "JWT",
-                    Description = "Login'dan oldin tokenni kiriting (\"Bearer\" so'zisiz)"
+                    Description = "Login'dan olingan tokenni kiriting (\"Bearer\" so'zisiz)"
                 });
 
                 var securityScheme = new OpenApiSecurityScheme
