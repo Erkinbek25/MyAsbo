@@ -9,6 +9,8 @@ using MyAsbo.Service.Interfaces;
 using MyAsbo.Service.Options;
 using MyAsbo.Service.Services;
 using System.Text;
+using Microsoft.OpenApi.Models;
+using System.Security.Cryptography.Xml;
 
 namespace MyAsbo.Api
 {
@@ -61,7 +63,33 @@ namespace MyAsbo.Api
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    Description = "Login'dan oldin tokenni kiriting (\"Bearer\" so'zisiz)"
+                });
+
+                var securityScheme = new OpenApiSecurityScheme
+                {
+
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                };
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {  securityScheme, Array.Empty<string>()}
+                });
+            });
 
             var app = builder.Build();
 
